@@ -1,0 +1,9 @@
+[22:16:32] [ServerMain/INFO]: [bootstrap] Running Java 25 (OpenJDK 64-Bit Server VM 25.0.1+8-LTS; Eclipse Adoptium Temurin-25.0.1+8) on Windows 11 10.0 (amd64)
+[22:16:32] [ServerMain/INFO]: [bootstrap] Loading Paper 26.2-121-main@a2a42c5 (2026-08-29T11:32:25Z) for Minecraft 26.2
+[22:16:32] [ServerMain/INFO]: [PluginInitializerManager] Initializing plugins...
+[22:16:33] [ServerMain/INFO]: [PluginInitializerManager] Initialized 1 plugin
+[22:16:33] [ServerMain/INFO]: [PluginInitializerManager] Bukkit plugins (1):
+ - mcProxyPlugin (1.0.0)
+[22:16:39] [DataConverter MCTypeRegistry init thread/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[22:16:39] [ServerMain/WARN]: Failed to load eula.txt
+[22:16:39] [ServerMain/INFO]: You need to agree to the EULA in order to run the server. Go to eula.txt for more info.
