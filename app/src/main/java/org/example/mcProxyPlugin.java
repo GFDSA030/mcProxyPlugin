@@ -22,6 +22,11 @@ public class mcProxyPlugin extends JavaPlugin {
     }
 
     @Override
+    public void onLoad() {
+        getLogger().info("mcProxyPlugin loaded!");
+    }
+
+    @Override
     public void onEnable() {
         getLogger().info("mcProxyPlugin enabled!");
     }
