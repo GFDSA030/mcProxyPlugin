@@ -1,0 +1,4 @@
+name: mcProxyPlugin
+version: 1.0.0
+main: org.example.mcProxyPlugin
+api-version: '26.2'
