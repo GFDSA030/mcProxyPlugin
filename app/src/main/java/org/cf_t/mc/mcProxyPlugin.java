@@ -5,10 +5,16 @@ package org.cf_t.mc;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.UUID;
+import java.util.logging.Level;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class mcProxyPlugin extends JavaPlugin {
@@ -36,13 +42,15 @@ public class mcProxyPlugin extends JavaPlugin {
         getLogger().info("mcProxyPlugin disabled!");
     }
 
-    @Override
-    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s,
-            @NotNull String @NotNull [] strings) {
-        if (!(commandSender instanceof Player player)) {
-            return false;
-        }
-        return true;
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+
+        String name = event.getPlayer().getName();
+        UUID uuid = event.getPlayer().getUniqueId();
+        String ip = event.getPlayer().getAddress().toString();
+        getLogger().log(Level.INFO, "Player: {0}", name);
+        getLogger().log(Level.INFO, "UUID: {0}", uuid);
+        getLogger().log(Level.INFO, "IP: {0}", ip);
     }
 
 }
