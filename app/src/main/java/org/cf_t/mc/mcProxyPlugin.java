@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class mcProxyPlugin extends JavaPlugin implements Listener {
@@ -48,12 +49,22 @@ public class mcProxyPlugin extends JavaPlugin implements Listener {
         getLogger().log(Level.INFO, "Player: {0}", name);
         getLogger().log(Level.INFO, "UUID: {0}", uuid);
         getLogger().log(Level.INFO, "IP: {0}", ip);
-        String url = String.format("http://%s?uuid=%s&pin=&s", infoAddr, uuid.toString(), pin);
+        String url = String.format("http://%s?uuid=%s&pin=&s&quit=false", infoAddr, uuid.toString(), pin);
         try {
             getLogger().log(Level.INFO, "infoBody: {0}", http.get(url));
         } catch (IOException | InterruptedException ex) {
             System.getLogger(mcProxyPlugin.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        String name = event.getPlayer().getName();
+        UUID uuid = event.getPlayer().getUniqueId();
+
+        getLogger().log(Level.INFO, "Player quit: {0}", name);
+        getLogger().log(Level.INFO, "UUID: {0}", uuid);
+        String url = String.format("http://%s?uuid=%s&pin=&s&quit=true", infoAddr, uuid.toString(), pin);
     }
 
 }
