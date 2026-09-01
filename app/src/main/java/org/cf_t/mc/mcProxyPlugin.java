@@ -3,6 +3,7 @@
  */
 package org.cf_t.mc;
 
+import java.io.IOException;
 import java.util.UUID;
 import java.util.logging.Level;
 
@@ -13,12 +14,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class mcProxyPlugin extends JavaPlugin implements Listener {
 
-    public String getGreeting() {
-        return "Hello World!";
-    }
+    private String pin = "";
+    private String infoAddr = "";
 
     public static void main(String[] args) {
-        System.out.println(new mcProxyPlugin().getGreeting());
+        System.out.println("this is paper plugin");
     }
 
     @Override
@@ -28,6 +28,8 @@ public class mcProxyPlugin extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        pin = getConfig().getString("settings.infoPin");
+        infoAddr = getConfig().getString("settings.infoAddr");
         getLogger().info("mcProxyPlugin enabled!");
         getServer().getPluginManager().registerEvents(this, this);
     }
@@ -46,6 +48,12 @@ public class mcProxyPlugin extends JavaPlugin implements Listener {
         getLogger().log(Level.INFO, "Player: {0}", name);
         getLogger().log(Level.INFO, "UUID: {0}", uuid);
         getLogger().log(Level.INFO, "IP: {0}", ip);
+        String url = String.format("http://%s?uuid=%s&pin=&s", infoAddr, uuid.toString(), pin);
+        try {
+            getLogger().log(Level.INFO, "infoBody: {0}", http.get(url));
+        } catch (IOException | InterruptedException ex) {
+            System.getLogger(mcProxyPlugin.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
     }
 
 }
