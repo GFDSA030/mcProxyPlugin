@@ -43,7 +43,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'org.example.mcProxyPlugin'
+    mainClass = 'org.cf_t.mc.mcProxyPlugin'
 }
 
 tasks.named('test') {

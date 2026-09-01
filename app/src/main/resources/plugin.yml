@@ -1,4 +1,4 @@
 name: mcProxyPlugin
 version: 1.0.0
-main: org.example.mcProxyPlugin
+main: org.cf_t.mc.mcProxyPlugin
 api-version: '26.2'
