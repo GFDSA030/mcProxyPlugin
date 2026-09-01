@@ -65,6 +65,11 @@ public class mcProxyPlugin extends JavaPlugin implements Listener {
         getLogger().log(Level.INFO, "Player quit: {0}", name);
         getLogger().log(Level.INFO, "UUID: {0}", uuid);
         String url = String.format("http://%s?uuid=%s&pin=&s&quit=true", infoAddr, uuid.toString(), pin);
+        try {
+            http.get(url);
+        } catch (IOException | InterruptedException ex) {
+            System.getLogger(mcProxyPlugin.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
     }
 
 }
