@@ -31,6 +31,8 @@ public class mcProxyPlugin extends JavaPlugin implements Listener {
     public void onEnable() {
         pin = getConfig().getString("settings.infoPin");
         infoAddr = getConfig().getString("settings.infoAddr");
+        getLogger().log(Level.INFO, "pin:{0}", pin);
+        getLogger().log(Level.INFO, "infoAddr:{0}", infoAddr);
         getLogger().info("mcProxyPlugin enabled!");
         getServer().getPluginManager().registerEvents(this, this);
     }
@@ -49,9 +51,10 @@ public class mcProxyPlugin extends JavaPlugin implements Listener {
         getLogger().log(Level.INFO, "Player: {0}", name);
         getLogger().log(Level.INFO, "UUID: {0}", uuid);
         getLogger().log(Level.INFO, "IP: {0}", ip);
-        String url = String.format("http://%s?uuid=%s&pin=&s&quit=false", infoAddr, uuid.toString(), pin);
+        String url = String.format("http://%s?uuid=%s&pin=%s&quit=false", infoAddr, uuid.toString(), pin);
         try {
-            getLogger().log(Level.INFO, "infoBody: {0}", http.get(url));
+            String playerInfo = http.get(url);
+            getLogger().log(Level.INFO, playerInfo);
         } catch (IOException | InterruptedException ex) {
             System.getLogger(mcProxyPlugin.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
@@ -64,7 +67,7 @@ public class mcProxyPlugin extends JavaPlugin implements Listener {
 
         getLogger().log(Level.INFO, "Player quit: {0}", name);
         getLogger().log(Level.INFO, "UUID: {0}", uuid);
-        String url = String.format("http://%s?uuid=%s&pin=&s&quit=true", infoAddr, uuid.toString(), pin);
+        String url = String.format("http://%s?uuid=%s&pin=%s&quit=true", infoAddr, uuid.toString(), pin);
         try {
             http.get(url);
         } catch (IOException | InterruptedException ex) {

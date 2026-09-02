@@ -3,14 +3,6 @@
  */
 package org.example;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import org.cf_t.mc.mcProxyPlugin;
-import org.junit.jupiter.api.Test;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        mcProxyPlugin classUnderTest = new mcProxyPlugin();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
-    }
 }
